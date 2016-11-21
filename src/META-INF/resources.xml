@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="ildatabase" type="javax.sql.DataSource">#Thu Nov 17 17:41:35 CET 2016
+jdbcDriver=org.apache.derby.jdbc.ClientDriver
+password=app
+userName=app
+jdbcUrl=jdbc\:derby\://localhost\:1527/dbtest;create\=true
+</Resource>
+</resources>
