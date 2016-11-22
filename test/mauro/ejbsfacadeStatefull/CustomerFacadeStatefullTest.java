@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import mauro.ejbs.CustomerFacade;
+import mauro.ejbs.OrderFacade;
 import mauro.entities.Customer;
 import mauro.entities.Order;
 import org.junit.After;
@@ -37,13 +38,27 @@ public class CustomerFacadeStatefullTest {
     CustomerFacade cusFacade;
     public CustomerFacadeStatefullTest() {
     }
+    @Inject 
+    OrderFacade orderFacade;
+    
     
     @BeforeClass
     public static void setUpClass() {
        final Properties p = new Properties();
-        p.put("ildatabase", "new://Resource?type=DataSource");
+      
+       /*p.put("ildatabase", "new://Resource?type=DataSource");
         p.put("ildatabase.JdbcDriver", "org.hsqldb.jdbcDriver");
         p.put("ildatabase.JdbcUrl", "jdbc:hsqldb:mem:moviedb");
+        */
+        
+       
+        p.put("ildatabase", "new://Resource?type=DataSource");
+        p.put("ildatabase.JdbcDriver", "org.apache.derby.jdbc.ClientDriver");
+       p.put("ildatabase.JdbcUrl", "jdbc:derby://localhost:1527/ildatabase");
+        p.put("ildatabase.UserName", "app");
+         p.put("ildatabase.Password", "app");
+       
+       p.put("ildatabase.JtaManaged", "true");
   container= EJBContainer.createEJBContainer(p); }
     
     @AfterClass
@@ -145,5 +160,15 @@ List<Customer> listcustomerretrived=this.cusFacade.findAll();
 List<Customer> listcustomer=this.cusFacade.findAll();
 return listcustomer;
     
+    }
+    
+    @Test
+    public void createaORder(){
+    Order order =new Order();
+    order.setNameproduct("book of java jpa");
+    Customer c= this.cusFacade.find(1);
+    order.setCustomer(c);
+    c.getOrders().add(order);
+    this.orderFacade.create(order);
     }
 }
