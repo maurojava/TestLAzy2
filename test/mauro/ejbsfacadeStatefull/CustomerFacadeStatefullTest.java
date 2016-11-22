@@ -170,5 +170,17 @@ return listcustomer;
     order.setCustomer(c);
     c.getOrders().add(order);
     this.orderFacade.create(order);
+    
+     @Test
+    public void createaCustomerAndORder(){
+        Customer c= new Customer("Mauro");
+     cusFacade.create(c);
+    Order order =new Order();
+    order.setNameproduct("book of java jpa");
+    
+    
+    order.setCustomer(c);
+    c.getOrders().add(order);
+    this.orderFacade.create(order);
     }
 }
