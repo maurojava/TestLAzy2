@@ -8,7 +8,7 @@
     <class>mauro.entities.Order</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction=&apos;add,deleteTableContents&apos;,ForeignKeys=true)"/>
     </properties>
   </persistence-unit>
 </persistence>
